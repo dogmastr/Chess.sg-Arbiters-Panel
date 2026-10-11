@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Chess.sg Arbiters</title>
+<link rel="icon" type="image/png" href="img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&display=swap">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="arb">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-set" viewBox="0 0 24 24"><path d="M4 7h9M17 7h3M4 12h3M11 12h9M4 17h11M19 17h1"/><circle cx="15" cy="7" r="2"/><circle cx="9" cy="12" r="2"/><circle cx="17" cy="17" r="2"/></symbol>
+  <symbol id="i-tv" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3.2 3 3.2 15 0 18M12 3c-3.2 3-3.2 15 0 18"/></symbol>
+  <symbol id="i-bars" viewBox="0 0 24 24"><path d="M5 21V11M12 21V4M19 21v-7"/></symbol>
+  <symbol id="i-cal" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></symbol>
+  <symbol id="i-trophy" viewBox="0 0 24 24"><path d="M7 4h10v6a5 5 0 0 1-10 0V4zM7 6H4v1a4 4 0 0 0 4 4M17 6h3v1a4 4 0 0 1-4 4M12 15v3M9 18h6l1 3H8z"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+  <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 4v11M7 10l5 5 5-5M4 20h16"/></symbol>
+  <symbol id="i-rot" viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-2.3-5.7M20 4v5h-5"/></symbol>
+  <symbol id="i-medal" viewBox="0 0 24 24"><path d="M8 3l2.6 5.2M16 3l-2.6 5.2"/><circle cx="12" cy="14.5" r="6.5"/></symbol>
+  <symbol id="i-box" viewBox="0 0 24 24"><path d="M3 8l9-5 9 5v8l-9 5-9-5zM3 8l9 5 9-5M12 13v8"/></symbol>
+  <symbol id="i-cash" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/><path d="M7 10v4M17 10v4"/></symbol>
+  <symbol id="i-truck" viewBox="0 0 24 24"><path d="M2 5h11v10H2zM13 8h4l4 4v3h-8z"/><circle cx="6.5" cy="17.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></symbol></svg>
+
+<div class="shell">
+  <header class="apphead">
+    <img class="logo" src="img/logo.png" alt="" width="44" height="44">
+    <h1>Chess.sg <span>Arbiters</span></h1>
+    <button class="btn primary" id="btnTv" type="button" title="Open the TV display in its own tab. Drag that tab out into its own window on the TV screen, then press F there for full screen.">TV display ↗</button>
+  </header>
+
+  <aside class="side">
+    <nav aria-label="Panels">
+      <button type="button" data-area="main"><svg class="ic" aria-hidden="true"><use href="#i-set"/></svg>Main panel</button>
+      <button type="button" data-area="prizes"><svg class="ic" aria-hidden="true"><use href="#i-trophy"/></svg>Prizes panel</button>
+    </nav>
+    <dl class="keys">
+      <dt>On the TV page</dt>
+      <dd><kbd>F</kbd> full screen</dd>
+      <dd><kbd>1</kbd> <kbd>2</kbd> <kbd>3</kbd> <kbd>4</kbd> schedule, prizes, standings, rotate</dd>
+      <dt>On this page</dt>
+      <dd><kbd>Ctrl</kbd>+<kbd>V</kbd> paste standings</dd>
+      <dt>Saving</dt>
+      <dd>Changes show on the TV straight away and are saved on this computer.</dd>
+    </dl>
+  </aside>
+
+    <main class="settings" id="settings">
+      <!-- Main panel: what the TV shows, and the tournament's set-up -->
+      <section class="area" id="area-main" aria-label="Main panel">
+      <div class="tiles">
+        <div class="tile" id="kNowBox"><small>Now</small><b id="kNow"></b><span id="kNowSub"></span></div>
+        <div class="tile"><small>Next</small><b id="kNext"></b><span id="kNextSub"></span></div>
+        <div class="tile"><small>On the TV</small><b id="kTv"></b><span id="kTvSub"></span></div>
+        <div class="tile"><small>Standings</small><b id="kSt"></b><span id="kStSub"></span></div>
+      </div>
+
+      <div class="board">
+        <div class="col">
+          <details class="panel" id="p-setup" open>
+            <summary class="ph"><span class="ico"><svg class="ic" aria-hidden="true"><use href="#i-set"/></svg></span><h2>Setup</h2></summary>
+            <div class="pb">
+              <div class="field">
+                <span class="flab">Event</span>
+                <div class="seg" id="evPick" role="group" aria-label="Event"></div>
+                <span class="hint">Pick the event that is running now. Each event keeps its own name, chess-results link, schedule, prizes and standings, so switching never loses anything.</span>
+              </div>
+              <div class="field"><label for="set-results">Chess-results link (left pane)</label><input id="set-results" type="text" data-key="resultsUrl" placeholder="e.g. https://chess-results.com/tnr1515370.aspx?lan=1"><span class="hint">Copy it from the Chrome address bar.</span></div>
+            </div>
+          </details>
+          <details class="panel" id="p-show" open>
+            <summary class="ph"><span class="ico"><svg class="ic" aria-hidden="true"><use href="#i-tv"/></svg></span><h2>Show on the TV</h2></summary>
+            <div class="pb">
+              <div class="seg" id="showPick" role="group" aria-label="Show on the TV">
+                <button type="button" data-show="schedule">Playing schedule</button>
+                <button type="button" data-show="prizes">Prizes</button>
+                <button type="button" data-show="standings">Standings</button>
+                <button type="button" data-show="rotate"><svg class="ic" aria-hidden="true"><use href="#i-rot"/></svg>Rotate</button>
+              </div>
+              <div id="rotBox" hidden>
+                <ol class="tl" id="rotSteps"></ol>
+                <button class="add-end" id="rotAdd" type="button">+ Add step</button>
+                <p class="note" id="rotNote"></p>
+              </div>
+            </div>
+          </details>
+          <details class="panel" id="p-results" open>
+            <summary class="ph"><span class="ico"><svg class="ic" aria-hidden="true"><use href="#i-globe"/></svg></span><h2>Chess-results</h2><button class="btn sm" id="btnReload" type="button" title="Reload the chess-results page on the TV"><svg class="ic" aria-hidden="true"><use href="#i-rot"/></svg>Reload</button></summary>
+            <div class="pb">
+              <p class="note" id="crHint" hidden>Add the chess-results link in Setup to pick its pages here.</p>
+              <div class="crnav" id="crNav">
+                <div class="seg navseg" role="group" aria-label="Chess-results page">
+                  <button type="button" data-art="0">Starting rank</button>
+                  <button type="button" data-art="2">Pairings</button>
+                  <button type="button" data-art="1">Standings</button>
+                  <button type="button" data-art="4">Crosstable</button>
+                </div>
+                <div class="seg rdstep" id="rdStep">
+                  <button type="button" data-step="-1" aria-label="Previous round">‹</button>
+                  <span id="rdLabel">Round 1</span>
+                  <button type="button" data-step="1" aria-label="Next round">›</button>
+                </div>
+              </div>
+              <div class="crnav">
+                <span class="flab">Zoom</span>
+                <div class="seg zoom" role="group" aria-label="Zoom the chess-results page on the TV">
+                  <button type="button" data-z="-10" aria-label="Zoom out" title="Zoom out">−</button>
+                  <span id="zVal">100%</span>
+                  <button type="button" data-z="10" aria-label="Zoom in" title="Zoom in">+</button>
+                </div>
+                <button class="btn" id="btnResetLayout" type="button" title="Back to 100% zoom">Reset</button>
+              </div>
+              <label class="check"><input id="set-header" type="checkbox" data-key="showHeader"> Show the page's header and tournament details (it won't auto-scroll down if you enable this)</label>
+            </div>
+          </details>
+          <details class="panel" id="p-standings" open>
+            <summary class="ph"><span class="ico"><svg class="ic" aria-hidden="true"><use href="#i-bars"/></svg></span><h2>Standings</h2></summary>
+            <div class="pb">
+              <div class="btns"><button class="btn" id="btnPasteOpen" type="button">Paste new standings</button><button class="btn" id="btnStReset" type="button">Clear results</button></div>
+              <p class="note remind">Remember to update the standings after every round, so the TV shows the latest standings and win chances.</p>
+              <p class="note">Shortcut: copy the chess-results table, then press <kbd>Ctrl</kbd>+<kbd>V</kbd> anywhere on this page.</p>
+            </div>
+          </details>
+          <details class="panel" id="p-clock" open>
+            <summary class="ph"><span class="ico"><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg></span><h2>Clock</h2></summary>
+            <div class="pb">
+              <div class="field"><label for="set-title">Name shown above the clock</label><input id="set-title" type="text" data-key="title"></div>
+              <label class="check"><input id="set-12h" type="checkbox" data-key="h12"> 12-hour clock</label>
+            </div>
+          </details>
+        </div>
+        <div class="col">
+          <details class="panel" id="p-schedule" open>
+            <summary class="ph"><span class="ico"><svg class="ic" aria-hidden="true"><use href="#i-cal"/></svg></span><h2>Playing schedule</h2><button class="btn sm" id="btnSchedReset" type="button">Reset</button></summary>
+            <div class="pb">
+              <ol class="tl" id="schedEdit"></ol>
+              <button class="add-end" id="btnAddRow" type="button">+ Add event</button>
+              <p class="note">Drag the grip to reorder: events keep their length, so only the times between the old and new place change. Click + on the line between two events to add one there (later events move down 15 min). Change a length to move everything after it. Name rounds "Round 1", "Round 2"… so the clock can say which round is in play. This list also drives the countdown.</p>
+            </div>
+          </details>
+          <details class="panel" id="p-backup" open>
+            <summary class="ph"><span class="ico"><svg class="ic" aria-hidden="true"><use href="#i-down"/></svg></span><h2>Backup</h2></summary>
+            <div class="pb">
+              <div class="field"><label for="set-json">Settings code</label><textarea id="set-json" spellcheck="false"></textarea><span class="hint">Copy to set up another computer the same way, or paste a code and load it.</span></div>
+              <div class="btns">
+                <button class="btn" id="btnCopy" type="button">Copy code</button>
+                <button class="btn" id="btnLoad" type="button">Load code</button>
+                <button class="btn" id="btnReset" type="button">Reset everything</button>
+              </div>
+              <p class="note" id="backupMsg" role="status"></p>
+            </div>
+          </details>
+        </div>
+      </div>
+      </section>
+
+      <!-- Prizes panel: who wins what, worked out from the standings (js/winners.js fills it in) -->
+      <section class="area" id="area-prizes" aria-label="Prizes panel" hidden>
+      <div class="tiles">
+        <div class="tile"><small>Ranking</small><b id="wkRank"></b><span id="wkRankSub"></span></div>
+        <div class="tile"><small>Placing prizes</small><b id="wkWon"></b><span id="wkWonSub"></span></div>
+        <div class="tile"><small>Cash to pay out</small><b id="wkCash"></b><span id="wkCashSub"></span></div>
+        <div class="tile"><small>Deliveries</small><b id="wkShip"></b><span id="wkShipSub"></span></div>
+      </div>
+
+      <details class="panel" id="p-winners" open>
+        <summary class="ph"><span class="ico"><svg class="ic" aria-hidden="true"><use href="#i-trophy"/></svg></span><h2>Placing prizes <span id="wEvent"></span></h2></summary>
+        <div class="pb">
+          <div class="btns"><button class="btn" id="wPaste" type="button">Paste new standings</button><button class="btn" id="wCopy" type="button">Copy winners list</button></div>
+          <p class="note remind warn" id="wNote" role="status" hidden></p>
+          <div class="wout" id="wOut" hidden></div>
+          <div class="wcards" id="wCards"></div>
+        </div>
+      </details>
+      <details class="panel" id="p-medals" open>
+        <summary class="ph"><span class="ico"><svg class="ic" aria-hidden="true"><use href="#i-medal"/></svg></span><h2>Score medals</h2></summary>
+        <div class="pb">
+          <div class="wcards" id="wTiers"></div>
+          <p class="note">For the players without a placing prize. Every score medal comes with a chess keychain.</p>
+        </div>
+      </details>
+
+      <div class="board">
+        <div class="col">
+          <details class="panel" id="p-handout" open>
+            <summary class="ph"><span class="ico"><svg class="ic" aria-hidden="true"><use href="#i-box"/></svg></span><h2>Handout list</h2></summary>
+            <div class="pb">
+              <ul class="wlist cols" id="wCount"></ul>
+              <p class="note">What to have ready at the prize table. A chess set swapped for cash is not counted.</p>
+            </div>
+          </details>
+          <details class="panel" id="p-cash" open>
+            <summary class="ph"><span class="ico"><svg class="ic" aria-hidden="true"><use href="#i-cash"/></svg></span><h2>Cash payouts</h2><button class="btn sm" id="wCopyCash" type="button">Copy payouts</button></summary>
+            <div class="pb" id="wCash"></div>
+          </details>
+          <details class="panel" id="p-ship" open>
+            <summary class="ph"><span class="ico"><svg class="ic" aria-hidden="true"><use href="#i-truck"/></svg></span><h2>Deliveries</h2><button class="btn sm" id="wCopyShip" type="button">Copy deliveries</button></summary>
+            <div class="pb" id="wShip"></div>
+          </details>
+          <details class="panel" id="p-prizes" open>
+            <summary class="ph"><span class="ico"><svg class="ic" aria-hidden="true"><use href="#i-tv"/></svg></span><h2>Prize list on the TV</h2></summary>
+            <div class="pb">
+              <div class="field">
+                <label for="set-prizes">Prize list</label>
+                <textarea id="set-prizes" data-key="prizesText" spellcheck="false"></textarea>
+                <span class="hint"><code>## Heading (note)</code> starts a group. <code>Place: Prize</code> adds a row (1st, 2nd, 3rd get medals; "3+ points" gets a score badge). <code>- text</code> adds a footnote. The first group with one row is shown as the top prize.</span>
+              </div>
+              <p class="note">This is only the text the TV shows. Who wins what follows the event's awards in <code>js/events.js</code>.</p>
+            </div>
+          </details>
+        </div>
+        <div class="col">
+          <details class="panel" id="p-table" open>
+            <summary class="ph"><span class="ico"><svg class="ic" aria-hidden="true"><use href="#i-bars"/></svg></span><h2>Standings and awards</h2></summary>
+            <div class="pb">
+              <div class="filt" id="wFilt" role="group" aria-label="Players to show"></div>
+              <div class="wscroll"><table class="wtable" id="wTable"></table></div>
+            </div>
+          </details>
+        </div>
+      </div>
+      </section>
+    </main>
+</div>
+
+<div class="modal" id="pasteModal" hidden role="dialog" aria-modal="true" aria-labelledby="pasteTitle">
+  <div class="mbox">
+    <h2 id="pasteTitle">Update standings</h2>
+    <ol>
+      <li>New event: open the <b>Starting rank</b> on chess-results, click inside it, press Ctrl+A then Ctrl+C to copy the whole page. <button class="btn sm" type="button" data-open="0">Open Starting rank ↗</button></li>
+      <li>After each round: do the same with the <b>Crosstable</b>. <button class="btn sm" type="button" data-open="4">Open Crosstable ↗</button></li>
+      <li>Paste the whole page here (Ctrl+V). The table is found automatically.</li>
+    </ol>
+    <textarea id="pasteBox" spellcheck="false" placeholder="Paste the whole chess-results page here (Ctrl+A, Ctrl+C, then Ctrl+V)"></textarea>
+    <p class="msg" id="pasteMsg" role="status"></p>
+    <div class="btns"><button class="btn" id="pasteCancel" type="button">Cancel</button><button class="btn primary" id="pasteOk" type="button" disabled>Update standings</button></div>
+    <p class="note">Tip: you can also press Ctrl+V anywhere on the page, outside a text box.</p>
+  </div>
+</div>
+<div class="toast" id="toast" hidden role="status"></div>
+
+<!-- Plain scripts, not ES modules, so the page also works when opened straight from disk.
+     They share one scope: code that runs while a file loads may only use files listed above it.
+     settings.js starts everything and must stay last. display.html (the TV page) loads a different set. -->
+<script src="js/util.js"></script>
+<script src="js/events.js"></script>
+<script src="js/state.js"></script>
+<script src="js/schedule.js"></script>
+<script src="js/parser.js"></script>
+<script src="js/paste.js"></script>
+<script src="js/sched-editor.js"></script>
+<script src="js/winners.js"></script>
+<script src="js/settings.js"></script>
+</body>
+</html>

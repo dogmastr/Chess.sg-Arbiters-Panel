@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Chess.sg TV display</title>
+<link rel="icon" type="image/png" href="img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&display=swap">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="app" id="app">
+  <div class="grid" id="grid">
+    <section class="pane web" id="pane-results" aria-label="Chess-results">
+      <iframe id="frame-results" title="Chess-results"></iframe>
+      <div class="empty" data-empty><strong>No chess-results link</strong><span>Paste the tournament link on the arbiter page.</span></div>
+    </section>
+
+    <section class="pane info" id="pane-info" aria-label="Schedule and prizes">
+      <div class="iin">
+        <div class="ihead">
+          <h2 class="ititle" id="iTitle"></h2>
+          <span class="ifund" id="prizeFund"></span>
+          <span class="stmeta" id="stMeta" hidden><span id="stMetaText"></span></span>
+        </div>
+        <div class="ibody">
+          <div class="view" id="viewSchedule"><div class="swrap" id="swrap"><div class="hl" id="hl"><div class="pf" id="hlFill"></div></div><ol class="sched" id="schedList"></ol></div></div>
+          <div class="view" id="viewPrizes" hidden><div class="prizes" id="prizes"></div></div>
+          <div class="view" id="viewStandings" hidden>
+            <div class="stand" id="stand">
+              <div class="stl">
+                <div class="filt" id="stFilt" role="group" aria-label="Category"></div>
+                <div class="sth"><span>#</span><span>Player</span><span class="cc"></span><span class="r">Pts</span><span class="r" id="stPctHead">Win chance</span></div>
+                <div class="strows" id="stRows"></div>
+                <div class="more" id="stMore"></div>
+              </div>
+              <div class="ldr" id="stLeaders"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="rot" id="rotBar" hidden><i id="rotFill"></i></div>
+    </section>
+
+    <section class="pane clock" id="pane-clock" aria-label="Clock"><div class="cin">
+      <div class="chead">
+        <span class="title" id="tTitle"></span>
+        <span class="status" id="status"><span class="dot"></span><span id="statusText"></span></span>
+      </div>
+      <div class="time" id="time">
+        <span class="d"></span><span class="d"></span><span class="c">:</span><span class="d"></span><span class="d"></span><span class="c">:</span><span class="d"></span><span class="d"></span><span class="ap" id="ampm"></span>
+      </div>
+      <div>
+        <div class="nextrow"><span class="nlabel" id="nextName"></span><span class="ncount" id="nextIn"></span></div>
+        <div class="track"><div class="fill" id="prog"></div></div>
+      </div>
+    </div>
+    <div class="flash" id="flash" hidden aria-live="polite"><div class="fin" id="flashIn"><small id="flashKicker">Now starting</small><b id="flashText"></b></div></div>
+    </section>
+  </div>
+</div>
+
+<!-- Plain scripts, not ES modules, so the page also works when opened straight from disk.
+     They share one scope: code that runs while a file loads may only use files listed above it.
+     main.js starts everything and must stay last. index.html (the arbiter page) loads a different set. -->
+<script src="js/util.js"></script>
+<script src="js/events.js"></script>
+<script src="js/state.js"></script>
+<script src="js/results.js"></script>
+<script src="js/layout.js"></script>
+<script src="js/schedule.js"></script>
+<script src="js/prizes.js"></script>
+<script src="js/tabs.js"></script>
+<script src="js/winchance.js"></script>
+<script src="js/standings.js"></script>
+<script src="js/clock.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

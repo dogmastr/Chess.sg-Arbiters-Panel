@@ -1,0 +1,41 @@
+Chess.sg Tournament Display
+Proprietary licence
+
+Copyright (c) 2026 dogmastr (https://github.com/dogmastr). All rights reserved.
+
+In this licence:
+  "the Software" means everything in this repository: the source code, pages, styles, tests and documentation.
+  "the Owner" means the copyright holder named above.
+  "Chess.sg" means the organisation that runs chess tournaments under the name Chess.sg, and the people acting for it.
+
+1. Ownership
+   The Software is licensed, not sold. The Owner keeps all rights, title and interest in the Software, including all
+   copyright. Nothing in this licence transfers ownership of any part of the Software to anyone.
+
+2. Who may use it
+   The Owner grants Chess.sg, and nobody else, a non-exclusive, perpetual, irrevocable, royalty-free licence to use,
+   copy, modify and redistribute the Software, and otherwise to use it freely in any way and for any purpose. This
+   licence belongs to Chess.sg alone: receiving a copy from Chess.sg does not give anyone else a right to use the
+   Software (see clause 3). Changes made under this clause do not alter the Owner's ownership of the Software.
+
+3. Everyone else
+   No other person or organisation is granted any right to use, copy, modify, merge, publish, distribute, sublicense,
+   sell or host the Software, in whole or in part, for any purpose, without the Owner's prior written permission.
+   Being able to read this code, or to open the pages it is served from, is not a licence to use it. (Where this
+   repository is public on GitHub, GitHub's Terms of Service let GitHub users view and fork it on GitHub itself;
+   this licence grants nothing beyond that.)
+
+4. No ending
+   The Owner will not end or withdraw the licence in clause 2.
+
+5. Names and logos
+   The Chess.sg name and logo (img/logo.png) belong to Chess.sg. They are not part of what the Owner claims or
+   licenses here.
+
+6. No warranty
+   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO
+   THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+   OWNER BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+   ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OF OR OTHER DEALINGS IN THE SOFTWARE.
+
+To ask for permission, contact the Owner through https://github.com/dogmastr.

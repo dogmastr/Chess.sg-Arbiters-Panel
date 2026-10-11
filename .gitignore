@@ -1,0 +1,7 @@
+# local copy of the single-file version from before the split
+_backup/
+
+# OS and editor files
+.DS_Store
+Thumbs.db
+.vscode/
